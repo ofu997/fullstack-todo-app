@@ -29,7 +29,7 @@ export class LoginView extends Component {
     })
       .then((response) => {
         if (response.status === 200) {
-          window.location.replace("/ddd");
+          this.props.history.push("/ddd");
         }
       })
       .catch((err) => {
@@ -44,9 +44,8 @@ export class LoginView extends Component {
         maxWidth="xs"
         style={{
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
-          height: " 100vh",
+          height: "75vh",
         }}
       >
         <div>
