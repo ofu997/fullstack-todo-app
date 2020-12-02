@@ -26,16 +26,15 @@ export class LoginView extends Component {
         username: this.state.username,
         password: this.state.password,
       }),
-      redirect: "follow",
-    }).then((response) => {
-      if (response.status === 201) {
-        console.log(response.status);
-        window.location.replace("/ddd");
-      }
-    });
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          window.location.replace("/ddd");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
