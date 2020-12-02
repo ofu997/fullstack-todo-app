@@ -55,7 +55,8 @@ router.get(`/login`, async (ctx: any) => {
 
 router.post(`/login`, passport.authenticate("local"), (ctx) => {
   // `req.user` contains the authenticated user.
-  ctx.redirect(`/status`);
+  console.log("logged in");
+  return ctx.redirect(`/ddd`);
 });
 
 router.get(`/logout`, async (ctx: any) => {
