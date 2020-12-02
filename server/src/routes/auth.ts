@@ -54,8 +54,10 @@ router.get(`/login`, async (ctx: any) => {
 });
 
 router.post(`/login`, passport.authenticate("local"), (ctx) => {
-  // `req.user` contains the authenticated user.
-  ctx.redirect(`/status`);
+  ctx.body = {
+    status: 200,
+    message: "success",
+  };
 });
 
 router.get(`/logout`, async (ctx: any) => {
