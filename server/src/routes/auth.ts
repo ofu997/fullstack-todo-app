@@ -3,10 +3,12 @@ import passport from "koa-passport";
 import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 import User from "../models/User";
 
 const router = new Router();
+const secret = process.env.JWT_SECRET || "secret-token";
 
 router.get(`/register`, async (ctx: any) => {
   ctx.type = "html";
@@ -54,9 +56,12 @@ router.get(`/login`, async (ctx: any) => {
 });
 
 router.post(`/login`, passport.authenticate("local"), (ctx) => {
+  const payload = { sub: ctx.state.user.id };
+  const token = jwt.sign(payload, secret);
   ctx.body = {
     status: 200,
     message: "success",
+    token: token,
   };
 });
 

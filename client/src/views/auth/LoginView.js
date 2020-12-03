@@ -19,22 +19,21 @@ export class LoginView extends Component {
     // Login User
     event.preventDefault();
 
-    await fetch(`/login`, {
+    const response = await fetch(`/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
       }),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          this.props.history.push("/ddd");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
+    if (response.status === 200) {
+      const body = await response.json();
+      console.log(body.token);
+      this.props.history.push("/ddd");
+    }
   };
 
   render() {
